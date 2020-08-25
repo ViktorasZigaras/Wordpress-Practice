@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/php/menus.php';
+
 /**
 * Plugin Name: Very First Plugin
 * Plugin URI: https://www.yourwebsiteurl.com/
@@ -9,12 +11,12 @@
 * Author URI: http://yourwebsiteurl.com/
 **/
 
-add_action( 'admin_menu', function(){
-    add_menu_page('event_title', 'event_menu', 'manage_options', 'event_slug', 'render_event_function');
-    // add_menu_page( string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '', string $icon_url = '', int $position = null );
-    // add_submenu_page('bebras', 'Page title 2', 'Menu title 2', 'manage_options', 'bebras2', 'bebro_funkcija2');
-    // add_submenu_page('bebras', 'Edit', null, 'manage_options', 'bebras3', 'bebro_funkcija3');
-});
+// add_action( 'admin_menu', function(){
+//     add_menu_page('event_title', 'event_menu', 'manage_options', 'event_slug', 'render_event_function');
+//     // add_menu_page( string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '', string $icon_url = '', int $position = null );
+//     // add_submenu_page('bebras', 'Page title 2', 'Menu title 2', 'manage_options', 'bebras2', 'bebro_funkcija2');
+//     // add_submenu_page('bebras', 'Edit', null, 'manage_options', 'bebras3', 'bebro_funkcija3');
+// });
 
 function your_login_function()
 {
@@ -24,7 +26,7 @@ function your_login_function()
             'post_content' => 'post_content',
             'post_status'  => 'publish',
             'post_author'  => 1, //get_current_user_id()
-            'post_type'     => 'Event',
+            'post_type'     => 'event',
             // 'post_category' => array( 8,39 ),
             'meta_input'   => [
                 'text' => $_POST['text'],
@@ -62,7 +64,7 @@ function render_event_function()
     // echo count(get_posts()) . ' count <br><br>';
 
     $posts = get_posts([
-        'post_type' => 'Event',
+        'post_type' => 'event',
         'post_status' => 'publish',
         'numberposts' => -1
         // 'order'    => 'ASC'
